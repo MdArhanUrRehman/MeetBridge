@@ -16,7 +16,7 @@ import styles from "../styles/videoComponent.module.css";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
 
-const server_url = "http://localhost:8080";
+const server_url = "https://videoconferencing-jnqc.onrender.com";
 
 const connections = {};
 

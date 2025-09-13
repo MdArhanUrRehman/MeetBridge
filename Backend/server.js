@@ -26,7 +26,7 @@ app.use(cors());
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/videoconference');
+        await mongoose.connect('mongodb+srv://mdarhan0309_db_user:sk1VIwYIACGY0XK2@videoconference.j9gbmpn.mongodb.net/?retryWrites=true&w=majority&appName=VideoConference');
         console.log("Database Connected");
         
     } catch (error) {
