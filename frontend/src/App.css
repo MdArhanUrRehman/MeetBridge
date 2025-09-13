@@ -1,0 +1,163 @@
+.landingPageContainer{
+  width: 100vw;
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1619995745882-f4128ac82ad6?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.landingPageContainer nav{
+  color: white;
+  padding-inline: 1.2rem;
+  padding-block: 1.6rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.landingPageContainer nav h2{
+  font-size: 1.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.landingPageContainer nav .navlist{
+    gap: 2rem;
+    display:  flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.landingPageContainer nav .navlist div{
+  background-color: orange;
+  padding-inline: 1rem;
+  padding-block:0.4rem ;
+  border-radius: 1rem;
+  font-size: 1rem;
+}
+
+.landingContainer{
+  display: flex;
+  align-items: center;
+  height: 70vh;
+  width: 95vw;
+  margin-block: 1.5rem;
+  padding-inline: 2rem;
+  justify-content: space-between;
+}
+
+.left-side{
+   color: white;
+}
+
+.left-side > div[role='button']{
+  background-color: orange;
+  width: fit-content;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.start-button{
+  text-decoration: none; 
+  color: white;
+}
+
+
+
+/*Auth*/
+
+.auth-container {
+  padding: 20px;
+}
+
+.auth-form {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.auth-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: auto;
+  align-items: flex-start;
+  padding: 20px;
+  min-width: 340px;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background: #fff;
+  color: #5e5e5e;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.auth-subtitle {
+  font-size: 14px;
+}
+
+.highlight {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.input-group {
+  width: 100%;
+}
+
+.input-group p {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 4px;
+  border: 1px solid #dadada;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background: orange;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: darkgoldenrod;
+}
+
+.link {
+  color: #284b63;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  text-align: center;
+}
+
+.meetContainer{
+  
+}
