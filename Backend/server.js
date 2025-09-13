@@ -28,7 +28,6 @@ const connectDB = async () => {
     try {
         await mongoose.connect('mongodb+srv://mdarhan0309_db_user:sk1VIwYIACGY0XK2@videoconference.j9gbmpn.mongodb.net/?retryWrites=true&w=majority&appName=VideoConference');
         console.log("Database Connected");
-        
     } catch (error) {
         console.log(error);
     }
@@ -42,7 +41,6 @@ app.get("/home", (req, res) => {
 });
 
 app.use("/api/v1/user", userRouter);
-
 
 // io.on("connection", (socket) => {
 
