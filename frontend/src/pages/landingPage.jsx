@@ -8,7 +8,7 @@ export default function LandingPage() {
         <nav>
             <div className="navHeader"><h2>Video Call</h2></div>
             <div className="navlist">
-                <p onClick={() => window.location.href="/gad645"}>Join as Guest</p>
+                <Link to="/gad645">Join as Guest</Link>
                 <p>Register</p>
                 <div role="button">
                     <p>Login</p>
