@@ -16,7 +16,7 @@ export default function Login() {
     e.preventDefault();
 
     if (state === "Sign Up") {
-      const { data } = await axios.post("https://videoconferencing-jnqc.onrender.com/api/v1/user/signup", {
+      const { data } = await axios.post("https://videoconferencing-2.onrender.com", {
         name: user.name,
         email: user.email,
         password: user.password,

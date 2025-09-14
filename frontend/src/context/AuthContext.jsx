@@ -3,7 +3,7 @@ import axios from "axios";
 
 const AppContext = createContext({});
 
-const server_url = "https://videoconferencing-jnqc.onrender.com"
+const server_url = "https://videoconferencing-2.onrender.com"
 
 export function AppProvider({children}){
 
