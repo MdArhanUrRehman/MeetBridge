@@ -471,6 +471,7 @@ export default function VideoComponent() {
       console.log(tracks)
       console.log(socketIdRef);
       socketRef.current.emit('user-left', socketIdRef.current);
+      socketRef.current.disconnect();
       tracks.forEach((track) => track.stop());
       console.log("stoped")
     } catch (e) {}
@@ -510,6 +511,8 @@ export default function VideoComponent() {
     setAskForUsername(false);
     getMedia();
   };
+
+  console.log(videos)
 
   return (
     <div className="mainContainer">
