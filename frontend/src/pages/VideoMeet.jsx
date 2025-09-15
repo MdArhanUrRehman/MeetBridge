@@ -470,7 +470,7 @@ export default function VideoComponent() {
       let tracks = localVideoref.current.srcObject.getTracks();
       console.log(tracks)
       console.log(socketIdRef);
-      socketRef.current.emit('user-left', socketIdRef);
+      socketRef.current.emit('user-left', socketIdRef.current);
       tracks.forEach((track) => track.stop());
       console.log("stoped")
     } catch (e) {}
