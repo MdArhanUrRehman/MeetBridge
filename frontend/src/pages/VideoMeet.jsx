@@ -468,6 +468,8 @@ export default function VideoComponent() {
   let handleEndCall = () => {
     try {
       let tracks = localVideoref.current.srcObject.getTracks();
+      console.log(tracks)
+      socketRef.current.emit('user-left', socketIdRef);
       tracks.forEach((track) => track.stop());
     } catch (e) {}
     navigate("/");
