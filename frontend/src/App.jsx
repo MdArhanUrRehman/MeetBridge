@@ -12,7 +12,6 @@ function App() {
   return (
     <>
        <MyRouter>
-        {/* <Route path='/home' element={}></Route> */}
         <Route path='/' element={<LandingPage/>}></Route>
         <Route path='/Home' element={<HomeComponent/>}></Route>
         <Route path='/auth' element={<Authentication/>}></Route>

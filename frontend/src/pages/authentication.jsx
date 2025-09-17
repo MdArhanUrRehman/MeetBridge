@@ -1,9 +1,16 @@
 import { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { data, useNavigate } from "react-router";
 import axios from "axios";
+import "../styles/AuthPage.css"
+import AuthImage from "../assets/AuthImage.svg"
+import AppContext from "../context/AuthContext";
 
 export default function Login() {
   const [state, setState] = useState("Sign Up");
+
+  const { userSignUp, userLogin } = useContext(AppContext);
+
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     name: "",
@@ -11,43 +18,46 @@ export default function Login() {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if (state === "Sign Up") {
-      const { data } = await axios.post("https://videoconferencing-2.onrender.com/api/v1/user/signup", {
+      const dataSignUp = {
         name: user.name,
         email: user.email,
         password: user.password,
-      });
+      }
+      
 
+      const data = userSignUp(dataSignUp);
 
-      if(data.success === true){
+      if(data){
         setUser({
           name : "",
           email : "",
           password : "",
         });
-        console.log(data);
       }else{
         console.log(data.message);
       }
     } else {
-      const { data } = await axios.post("https://videoconferencing-2.onrender.com/api/v1/user/login", {
+      const dataLogin = {
         email: user.email,
         password: user.password,
-      });
+      }
+
+      const data = userLogin(dataLogin);
 
       console.log(data)
 
-      if(data.success){
+      if(data){
         setUser({
           email : "",
           password : "",
-          
         });
-        localStorage.setItem("token", data.message);
         console.log("logged in");
       }else{
         console.log(data.message);
@@ -57,7 +67,8 @@ export default function Login() {
 
 return (
     <div className="auth-container" onSubmit={onSubmitHandler}>
-      <form className="auth-form">
+      <img src={AuthImage} alt="" className="authImage"/>
+      {<form className="auth-form">
         <div className="auth-box">
           <p className="auth-title">
             {state === "Sign Up" ? "Create Account" : "Login"}
@@ -104,9 +115,18 @@ return (
             />
           </div>
 
-          <button className="submit-btn">
-            {state === "Sign Up" ? "Create Account" : "Login"}
-          </button>
+          <button
+    type="submit"               // <-- ensure submit type
+    className="submit-btn"
+    disabled={loading}
+  >
+    {loading
+      ? "Processing..."
+      : state === "Sign Up"
+        ? "Create Account"
+        : "Login"}
+  </button>
+
 
           {state === "Sign Up" ? (
             <p>
@@ -124,7 +144,7 @@ return (
             </p>
           )}
         </div>
-      </form>
+      </form>}
     </div>
   );
 }

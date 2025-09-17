@@ -7,6 +7,9 @@ import RestoreIcon from '@mui/icons-material/Restore';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import AppContext from '../context/AuthContext';
+import Navbar from '../components/Navbar';
+import "../styles/HomeComponent.css"
+import LinkImage from "../assets/Link.svg"
 
 function HomeComponent() {
 
@@ -22,20 +25,8 @@ function HomeComponent() {
   }
 
   return (
-    <div>
-      <div className="navbar">
-        <div style={{display:"flex", alignItems:"center" }}>
-          <h3>Video Confress</h3>
-        </div>
-        <div style={{display:"flex", alignItems:"center", gap:"12px" }}>
-          <IconButton>
-            <RestoreIcon/>
-            <p onClick={() => navigate('/history')}>History</p>
-          </IconButton>
-          <Button onClick={() => (localStorage.removeItem("token"), navigate("/auth"))}>Logout</Button>
-        </div>
-      </div>
-
+    <div className='MainPage'>
+      <Navbar/>
 
       <div className="meetContainer">
         <div className="leftPanel">
@@ -46,6 +37,9 @@ function HomeComponent() {
               <Button onClick={handleJoinVideo} variant='contained'>Join</Button>
             </div>
           </div>
+        </div>
+        <div className='rightPanel'>
+           <img src={LinkImage} alt="" />
         </div>
       </div>
     </div>

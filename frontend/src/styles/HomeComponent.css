@@ -1,0 +1,24 @@
+.MainPage{
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #232323 0%, #2c3e50 90%, #1a1a1a 100%);
+}
+
+.meetContainer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 18px;
+  width: 100%;
+}
+
+.rightPanel img{
+  width: 375px;
+}
+
+.rightPanel{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 50%;
+}

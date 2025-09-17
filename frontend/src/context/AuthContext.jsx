@@ -1,11 +1,41 @@
-import {createContext} from "react";
+import {createContext, useState} from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AppContext = createContext({});
 
 const server_url = "https://videoconferencing-2.onrender.com"
 
 export function AppProvider({children}){
+
+    const [token, setToken] = useState(false);
+
+    const navigate = useNavigate();
+
+    const userSignUp = async (obj) => {
+        const {data} =  await axios.post("https://videoconferencing-2.onrender.com/api/v1/user/signup", obj);
+
+        const { name, ...loginData } = obj; 
+
+        if(data.success === true){
+        await userLogin(loginData);
+        return data.success;
+      }else{
+        console.log(data.message);
+      }
+    }
+
+    const userLogin = async (obj) => {
+       const { data } = await axios.post("https://videoconferencing-2.onrender.com/api/v1/user/login", obj);
+       if(data.success === true){
+        localStorage.setItem("token", data.message);
+        navigate("/");
+        setToken(true);
+        return data.success;
+      }else{
+        console.log(data.message);
+      }
+    }
 
     const getHistory = async () => {
         try {
@@ -35,7 +65,7 @@ export function AppProvider({children}){
     }
 
     const data = {
-        getHistory, addToUserHistory
+        getHistory, addToUserHistory, userSignUp, token, userLogin
     }
 
     return (

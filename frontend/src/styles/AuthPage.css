@@ -1,0 +1,119 @@
+.auth-container {
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #232323 0%, #2c3e50 50%, #1a1a1a 100%);
+}
+
+.auth-form {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+/* Base (desktop / tablet) */
+.auth-box {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 25%;
+  transform: translate(-25%, -50%);
+  gap: 12px;
+  margin: auto;
+  align-items: flex-start;
+  padding: 20px;
+  min-width: 340px;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgb(35, 35, 35) 0%, rgb(45, 60, 80) 100%);
+  backdrop-filter: blur(5px);
+  color: white;
+  font-size: 14px;
+  box-shadow: 8px 12px 22px rgba(0, 0, 0, 0.15);
+}
+
+
+.auth-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.auth-subtitle {
+  font-size: 14px;
+}
+
+.highlight {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.input-group {
+  width: 100%;
+}
+
+.input-group p {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 4px;
+  border: 1px solid #dadada;
+  border-radius: 6px;
+  font-size: 14px;
+  color: white;
+  background: linear-gradient(135deg, rgb(35, 35, 35) 0%, rgb(45, 60, 80) 100%);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  color: #fff;
+  background: rgb(50, 100, 210);
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: rgb(39, 133, 205);
+}
+
+.link {
+  color: #284b63;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.authImage {
+  position: fixed;
+  right: 5%;
+  width: 40vw;
+}
+
+@media screen and (max-width: 600px) {
+  .authImage {
+    visibility: hidden;
+  }
+
+  .auth-box {
+    left: 50%;                    /* center horizontally */
+    transform: translate(-50%, -50%); /* adjust transform */
+    min-width: auto;              /* let it shrink */
+    width: 90%;                   /* fluid width for small screens */
+    max-width: 340px;             /* keep it tidy */
+    padding: 16px;
+    padding-block: 2rem;
+    font-size: 15px;              /* slightly larger text if desired */
+  }
+  
+}

@@ -1,0 +1,99 @@
+.NavBar nav {
+  color: white;
+  padding-inline: 1.2rem;
+  padding-block: 1.6rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navHeader {
+  font-size: 1.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.navlist {
+  gap: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.NavBar nav .navlist div {
+  background: rgb(50, 100, 210);
+  padding-inline: 1rem;
+  padding-block: 0.4rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+}
+
+.sideBar {
+  display: none;
+}
+
+.barMenu {
+  display: none;
+}
+
+.barMenu > a {
+  text-decoration: none;
+  font-weight: 600;
+  background: rgb(50, 100, 210);
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  color: white;
+  border-radius: 18px;
+}
+
+.appName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  gap: 1px;
+}
+
+
+@media screen and (max-width: 600px) {
+  .navlist {
+    display: none;
+  }
+
+  .sideBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sideBar > i {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .barMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    height: 70vh;
+    width: 100vw;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .navHeader {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}
