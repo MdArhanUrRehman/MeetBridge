@@ -1,4 +1,4 @@
-import {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -67,6 +67,14 @@ export function AppProvider({children}){
     const data = {
         getHistory, addToUserHistory, userSignUp, token, userLogin
     }
+
+    useEffect(() => {
+        if(!token){
+            if(localStorage.getItem('token')){
+                setToken(true);
+            }
+        }
+    }, [token])
 
     return (
         <AppContext.Provider value={data}>

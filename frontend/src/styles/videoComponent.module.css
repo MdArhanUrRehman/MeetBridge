@@ -31,20 +31,19 @@
   bottom: 3rem;
   left: 50%;
   transform: translateX(-50%);
-  
   display: flex;
   justify-content: space-evenly;
-  gap: 1rem; /* optional spacing between buttons */
+  gap: 1rem; 
 }
 
 .callEnd{
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    background-color: red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .messages {
@@ -54,6 +53,36 @@
   z-index: 1000;
 }
 
+.lobbyContainer{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.lobbyName{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 12px;
+}
+
+.TextField :global(.MuiOutlinedInput-root) {
+  width: auto;
+  border-radius: 10px !important;
+  color: black !important;
+  font-size: 18px !important;
+}
+
+.lobbyVideo{
+  border-radius: 12px;
+  border: 3px solid rgb(50, 100, 210);
+}
+
+.lobbyName h2{
+  color: rgb(50, 100, 210);
+}
 
 .MuiIconButton-root {
   cursor: pointer !important;
@@ -149,4 +178,44 @@
 
 .userMessage > p{
   margin-top: 5px;
+}
+
+@media screen and (max-width:800px) {
+  .lobbyContainer{
+    flex-direction: column;
+  }
+
+  .TextField :global(.MuiOutlinedInput-root){
+    width: 300px !important;
+  }
+
+  .lobbyVideo{
+    width: 360px;
+  }
+}
+
+@media screen and (max-width:600px) {
+
+  .TextField :global(.MuiOutlinedInput-root){
+    width: 270px !important;
+  }
+
+  .lobbyName{
+    margin: 28px;
+  }
+
+  .lobbyVideo{
+    width: 280px;
+  }
+}
+
+@media screen and (max-width:300px) {
+
+  .TextField :global(.MuiOutlinedInput-root){
+    width: AUTO !important;
+  }
+
+  .lobbyVideo{
+    width: 220PX;
+  }
 }

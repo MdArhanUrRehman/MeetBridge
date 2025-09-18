@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "../styles/Navbar.css";
 import { Link, useNavigate } from 'react-router-dom';
 import logo from "../assets/Logo.png"
@@ -13,6 +13,10 @@ export default function () {
 
     const [bar, setBar] = useState(true);
 
+    useEffect(()=> {
+      
+    }, [token])
+
   return (
     <div className='NavBar'>
         <nav>
@@ -21,7 +25,7 @@ export default function () {
               <div className="navHeader">Meet Bridge</div>
             </div>
             <div className="navlist">
-                <Link to="/gad645" style={{textDecoration : "none", color : "white"}}>Join as Guest</Link>
+                <Link to="/Home" style={{textDecoration : "none", color : "white"}}>Join as Guest</Link>
                {!token ? <Link to="/auth" style={{textDecoration : "none", color : "white"}}>Register</Link> : <></>}
                 <div role="button">
                     <Link to="/auth" style={{textDecoration:"none", color:"white"}}>{token ? <span onClick={() => (localStorage.removeItem("token"), navigate("/auth"))}>Logout</span> : "Login"}</Link>
@@ -34,7 +38,7 @@ export default function () {
 
         {bar ? <></> : 
         <div className='barMenu'>
-           <Link>Join As Guest</Link>
+           <Link to={() => navigate("/Home")}>Join As Guest</Link>
            {!token ? <Link to="/auth">Register</Link> : null}
            <Link to="/auth">{token ? <span onClick={() => (localStorage.removeItem("token"), navigate("/auth"))}>Logout</span> : "Login"}</Link>
            {token ? <Link to="/History">History</Link> : null}

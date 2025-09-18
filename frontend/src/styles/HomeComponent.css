@@ -1,10 +1,10 @@
-.MainPage{
+.MainPage {
   width: 100vw;
   height: 100vh;
   background: linear-gradient(135deg, #232323 0%, #2c3e50 90%, #1a1a1a 100%);
 }
 
-.meetContainer{
+.meetContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -12,13 +12,151 @@
   width: 100%;
 }
 
-.rightPanel img{
+h2 {
+  color: #f0f0f0;
+}
+
+.rightPanel img {
   width: 375px;
 }
 
-.rightPanel{
+.rightPanel {
   display: flex;
   justify-content: end;
   align-items: center;
   width: 50%;
+}
+
+.leftPanelContent {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+
+.meeting {
+  display: flex;
+  gap: 12px;
+}
+
+.MuiOutlinedInput-root {
+  border-radius: 25px !important;
+  font-size: 18px !important;
+  color: white !important;
+  font-size: 12px !important;
+  padding-inline: 12px !important;
+  width: 300px !important;        
+  padding-block: 3px;
+}
+
+.btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.MuiButton-root {
+  padding: 8px !important;
+  border-radius: 8px !important;
+  text-transform: inherit !important;
+  font-weight: 600 !important;
+  background: rgb(50, 100, 210) !important;
+}
+
+.copy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+}
+
+@media screen and (max-width: 600px) {
+  .meetContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+  }
+
+  .leftPanelContent h2 {
+    font-size: 18px;
+  }
+
+  .rightPanel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 38px;
+  }
+
+  .rightPanel img {
+    width: 200px;
+  }
+
+  .meeting {
+    flex-direction: column;
+  }
+
+  .btns {
+    gap: 8px;
+  }
+
+  .MuiOutlinedInput-root{
+    width:auto !important;
+  }
+
+  .MuiButton-root {
+    padding: 5px !important;
+    padding-inline: 7px !important;
+    border-radius: 8px !important;
+    text-transform: inherit !important;
+    font-weight: 600 !important;
+    background: rgb(50, 100, 210) !important;
+  }
+}
+
+@media screen and (max-width: 1160px){
+  .btns {
+    gap: 8px;
+  }
+
+  .MuiOutlinedInput-root{
+    width:auto !important;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .meetContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+  }
+
+  .leftPanelContent h2 {
+    font-size: 18px;
+  }
+
+  .rightPanel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 38px;
+  }
+
+  .rightPanel img {
+    width: 230px;
+  }
+
+  .meeting {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .MuiButton-root {
+    padding: 3px !important;
+  }
 }

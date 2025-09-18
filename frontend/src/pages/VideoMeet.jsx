@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState  } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { io } from "socket.io-client";
 import TextField from "@mui/material/TextField";
@@ -25,7 +25,6 @@ const peerConfigConnection = {
 };
 
 export default function VideoComponent() {
-
   const navigate = useNavigate();
 
   var socketRef = useRef();
@@ -62,11 +61,6 @@ export default function VideoComponent() {
 
   let [videos, setVideos] = useState([]);
 
-  // TODO
-  // if(isChrome() === false) {
-
-  // }
-
   useEffect(() => {
     console.log("HELLO");
     getPermissions();
@@ -79,8 +73,8 @@ export default function VideoComponent() {
           .getDisplayMedia({ video: true, audio: true })
           .then(getDislayMediaSuccess)
           .then((stream) => {})
-          .catch((e) =>{
-            setScreen(false)
+          .catch((e) => {
+            setScreen(false);
           });
       }
     }
@@ -460,7 +454,7 @@ export default function VideoComponent() {
       getDislayMedia();
     }
   }, [screen]);
-  
+
   let handleScreen = () => {
     setScreen(!screen);
   };
@@ -468,12 +462,12 @@ export default function VideoComponent() {
   let handleEndCall = () => {
     try {
       let tracks = localVideoref.current.srcObject.getTracks();
-      console.log(tracks)
+      console.log(tracks);
       console.log(socketIdRef);
-      socketRef.current.emit('user-left', socketIdRef.current);
+      socketRef.current.emit("user-left", socketIdRef.current);
       socketRef.current.disconnect();
       tracks.forEach((track) => track.stop());
-      console.log("stoped")
+      console.log("stoped");
     } catch (e) {}
     navigate("/");
   };
@@ -499,7 +493,7 @@ export default function VideoComponent() {
 
   let sendMessage = (e) => {
     e.preventDefault();
-    if(message === "")return
+    if (message === "") return;
     console.log(socketRef.current);
     socketRef.current.emit("chat-message", message, username);
     setMessage("");
@@ -508,64 +502,61 @@ export default function VideoComponent() {
   };
 
   let connect = () => {
+    if(username === "") return;
     setAskForUsername(false);
     getMedia();
   };
 
-  console.log(videos)
+  console.log(videos);
 
   return (
-    <div className="mainContainer">
+    <div className={styles.mainContainer}>
       {/* <video ref={localVideoRef} autoPlay
         playsInline
         muted
         style={{ width: "100vw", height : "100vh", border: "1px solid black" }}></video>
         <button onClick={() => call()}>click</button> */}
       {askForUsername === true ? (
-        <div>
-          <h2>Enter into Lobby</h2>
-          <TextField
-            value={username}
-            fullWidth
-            label="fullWidth"
-            id="fullWidth"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <Button variant="contained" onClick={() => connect()}>
-            Connect
-          </Button>
-
+        <div className={styles.lobbyContainer}>
+          <div className={styles.lobbyName}>
+            <h2>Enter into Lobby</h2>
+            <TextField
+              value={username}
+              fullWidth
+              label="Enter Your name"
+              id="fullWidth"
+              onChange={(e) => setUsername(e.target.value)}
+              className={styles.TextField}
+            />
+            <Button variant="contained" onClick={() => connect()}>
+              Connect
+            </Button>
+          </div>
+         
           <video
             ref={localVideoref}
             autoPlay
             playsInline
             muted
-            style={{
-              width: "100vw",
-              height: "100vh",
-              border: "1px solid black",
-            }}
+           className={styles.lobbyVideo}
           ></video>
         </div>
       ) : (
         <>
           <div className={styles.meetVideoContainer}>
-            {showModal ? (
+            {!askForUsername && showModal ? (
               <div className={styles.chatRoom}>
                 <h1 style={{ color: "Black", textAlign: "center" }}>CHATS</h1>
                 <hr />
 
                 <div className={styles.chattingDisplay}>
-                    {
-                    messages?.map((item, index) =>(
-                    
-                       <div key={index} className={styles.userMessage}>
-                        <p style={{fontWeight:"600"}}>{item.sender} : </p>
-                        
-                        <p>{item.data}</p>
-                       </div>
-                    ))
-                    }
+                  {messages?.map((item, index) => (
+                    <div key={index} className={styles.userMessage}>
+                      <p style={{ fontWeight: "600" }}>{item.sender} : </p>
+
+                      <p>{item.data}</p>
+                    </div>
+                  ))}
                 </div>
 
                 <div className={styles.chatContainer}>
@@ -578,7 +569,13 @@ export default function VideoComponent() {
                       id=""
                       placeholder="Ask your questions?"
                     />
-                    <Button onClick={sendMessage} variant="contained" className={styles.sendButton}><SendIcon /></Button>
+                    <Button
+                      onClick={sendMessage}
+                      variant="contained"
+                      className={styles.sendButton}
+                    >
+                      <SendIcon />
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -618,7 +615,11 @@ export default function VideoComponent() {
               className={styles.messages}
               onClick={showModal ? closeChat : openChat}
             >
-              <Badge badgeContent={!showModal ? newMessages : null} max={999} color="error">
+              <Badge
+                badgeContent={!showModal ? newMessages : null}
+                max={999}
+                color="error"
+              >
                 <IconButton>
                   <ChatOutlinedIcon
                     style={
