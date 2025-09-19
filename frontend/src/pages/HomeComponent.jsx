@@ -34,7 +34,10 @@ function HomeComponent() {
   }
 
   let handleGenerate = () => {
-    if(!token) navigate("/auth"); return;
+    if(!token){
+      navigate("/auth");
+      return
+    };
      const id = uuidv4();
      setCopy(true);
      setFreeze(true);
@@ -57,7 +60,7 @@ function HomeComponent() {
           <div className='leftPanelContent'>
             <h2>Providing Quality Video Just Like Quality Education</h2>
             <div className='meeting'>
-              <TextField className='inp' value={meetingCode} onChange={e => setMettingCode(e.target.value)} id='outlined-basic' label="Meeting Code" variant='outlined' disabled={freeze} focused/>
+              <TextField className='inp' value={meetingCode} onChange={e => setMettingCode(e.target.value)} id='outlined-basic' label="Enter Meeting Code" variant='outlined' disabled={freeze}/>
                 <div className='btns'>
               <Button onClick={handleGenerate} variant='contained' disabled={freeze} style={freeze ? {backgroundColor : "rgb(50, 100, 210)", color:"white"} : null}>Generate meet</Button>
               <Button onClick={handleJoinVideo} variant='contained'>Join meet</Button>

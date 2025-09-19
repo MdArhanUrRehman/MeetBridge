@@ -26,6 +26,7 @@ export default function () {
             </div>
             <div className="navlist">
                 <Link to="/Home" style={{textDecoration : "none", color : "white"}}>Join as Guest</Link>
+                {token ? <Link style={{textDecoration : "none", color : "white"}} to="/History">History</Link> : null}
                {!token ? <Link to="/auth" style={{textDecoration : "none", color : "white"}}>Register</Link> : <></>}
                 <div role="button">
                     <Link to="/auth" style={{textDecoration:"none", color:"white"}}>{token ? <span onClick={() => (localStorage.removeItem("token"), navigate("/auth"))}>Logout</span> : "Login"}</Link>
@@ -40,8 +41,8 @@ export default function () {
         <div className='barMenu'>
            <Link to={() => navigate("/Home")}>Join As Guest</Link>
            {!token ? <Link to="/auth">Register</Link> : null}
+           {token ? <Link style={{textDecoration : "none", color : "white"}} to="/History">History</Link> : null}
            <Link to="/auth">{token ? <span onClick={() => (localStorage.removeItem("token"), navigate("/auth"))}>Logout</span> : "Login"}</Link>
-           {token ? <Link to="/History">History</Link> : null}
         </div>
         }
     </div>

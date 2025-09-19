@@ -1,0 +1,83 @@
+.HistoryContainer {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #1a1a1a 0%, #2c3e50 100%);
+  font-family: 'Inter', sans-serif;
+}
+
+.mainheader{
+    min-height: 100vh;
+  background: radial-gradient(circle at top left, #1a1a1a 0%, #2c3e50 100%);
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.HistoryHeader {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #fff;
+}
+
+.HistoryHeader h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg,#4facfe,#00f2fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.HistoryHeader p {
+  color: #a0a0a0;
+  font-size: 1rem;
+}
+
+.HistoryBox {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.MuiCard-root {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.MuiCard-root:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+.MuiCardContent-root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #e4e4e4;
+}
+
+.MeetingTitle {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: black;
+}
+
+.MeetingSub {
+  font-size: 0.95rem;
+  color: #7dd3fc;
+}
+
+.MeetingDetails {
+  font-size: 0.9rem;
+  color: #cfcfcf;
+}
+
+@media (max-width: 600px) {
+  .HistoryHeader h1 { font-size: 2rem; }
+}

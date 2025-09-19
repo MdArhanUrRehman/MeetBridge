@@ -15,6 +15,7 @@ import Badge from "@mui/material/Badge";
 import styles from "../styles/videoComponent.module.css";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
+import ChattingImage from "../assets/Chatting.svg";
 
 const server_url = "https://videoconferencing-2.onrender.com";
 
@@ -502,7 +503,7 @@ export default function VideoComponent() {
   };
 
   let connect = () => {
-    if(username === "") return;
+    if (username === "") return;
     setAskForUsername(false);
     getMedia();
   };
@@ -532,13 +533,13 @@ export default function VideoComponent() {
               Connect
             </Button>
           </div>
-         
+
           <video
             ref={localVideoref}
             autoPlay
             playsInline
             muted
-           className={styles.lobbyVideo}
+            className={styles.lobbyVideo}
           ></video>
         </div>
       ) : (
@@ -546,17 +547,26 @@ export default function VideoComponent() {
           <div className={styles.meetVideoContainer}>
             {!askForUsername && showModal ? (
               <div className={styles.chatRoom}>
-                <h1 style={{ color: "Black", textAlign: "center" }}>CHATS</h1>
-                <hr />
+                <h3 className={styles.chatHeader}>Chatting</h3>
+                <hr className={styles.chatDivider} />
 
-                <div className={styles.chattingDisplay}>
-                  {messages?.map((item, index) => (
-                    <div key={index} className={styles.userMessage}>
-                      <p style={{ fontWeight: "600" }}>{item.sender} : </p>
-
-                      <p>{item.data}</p>
+                <div className={styles.chatContent}>
+                  {messages.length === 0 ? (
+                    <img
+                      src={ChattingImage}
+                      className={styles.chattingImage}
+                      alt="No messages"
+                    />
+                  ) : (
+                    <div className={styles.chattingDisplay}>
+                      {messages?.map((item, index) => (
+                        <div key={index} className={styles.userMessage}>
+                          <p className={styles.sender}>{item.sender}:</p>
+                          <p className={styles.messageText}>{item.data}</p>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  )}
                 </div>
 
                 <div className={styles.chatContainer}>
@@ -566,7 +576,6 @@ export default function VideoComponent() {
                       name="userSend"
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      id=""
                       placeholder="Ask your questions?"
                     />
                     <Button
@@ -583,31 +592,35 @@ export default function VideoComponent() {
               <></>
             )}
 
-            <div className={styles.buttonContainer}>
+            <div className={styles.buttonContainer} style={showModal ? {display:"none"} : {display : "flex"}}>
               <IconButton onClick={handleVideo}>
-                {video === true ? (
-                  <VideoCameraFrontIcon style={{ fontSize: "3rem" }} />
+                {video ? (
+                  <VideoCameraFrontIcon className={styles.videoScreenIcon} />
                 ) : (
-                  <VideocamOffIcon style={{ fontSize: "3rem" }} />
+                  <VideoCameraFrontIcon className={styles.videoScreenIcon} />
                 )}
               </IconButton>
+
               <IconButton onClick={handleAudio}>
-                {audio === true ? (
-                  <MicIcon style={{ fontSize: "2.5rem", cursor: "pointer" }} />
+                {audio ? (
+                  <MicIcon className={styles.micScreenIcon} />
                 ) : (
-                  <MicOffIcon style={{ fontSize: "2.5rem" }} />
+                  <MicOffIcon className={styles.micScreenIcon} />
                 )}
               </IconButton>
+
               <IconButton onClick={handleScreen}>
-                {screen == true ? (
-                  <ScreenShareIcon style={{ fontSize: "2.5rem" }} />
+                {screen ? (
+                  <ScreenShareIcon className={styles.micScreenIcon} />
                 ) : (
-                  <StopScreenShareIcon style={{ fontSize: "2.5rem" }} />
+                  <StopScreenShareIcon className={styles.micScreenIcon} />
                 )}
               </IconButton>
-              <IconButton onClick={handleEndCall}>
+
+              <IconButton onClick={handleEndCall} className={styles.endBtn}>
                 <div className={styles.callEnd}>
-                  <CallEndOutlinedIcon style={{ fontSize: "1.7rem" }} />
+                  {" "}
+                  <CallEndOutlinedIcon className={styles.callEndIcon} />{" "}
                 </div>
               </IconButton>
             </div>
@@ -639,7 +652,10 @@ export default function VideoComponent() {
                 showModal ? styles.goLeft : styles.goRight
               }`}
             ></video>
-            <div className={styles.conferenceContainer}>
+            <div
+              className={styles.conferenceContainer}
+              style={{ gridTemplateColumns: "repeat(3, 1fr)" }} 
+            >
               {videos.map((video) => (
                 <video
                   key={video.socketId + video.stream.id}

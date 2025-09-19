@@ -1,16 +1,27 @@
-.meetVideoContainer{
-    position: relative;
-    height: 100vh;
-    background: black;
+.meetVideoContainer {
+  position: relative;
+  height: 100vh;
+  background: black;
 }
 
-.meetUserVideo{
-   position: fixed;
-   bottom:10vh;
-   height: 20vh;
-   width: auto;
-   border-radius: 20px;
-   transition: all 0.3s ease-in-out;
+.mainContainer{
+  background-color: #000;  /* only this page is black */
+  min-height: 100vh;       /* full viewport height */
+
+  width: 100%;
+}
+
+.conferenceContainer {
+  background-color: #000;
+}
+
+.meetUserVideo {
+  position: fixed;
+  bottom: 10vh;
+  height: 20vh;
+  width: auto;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
 }
 
 .goRight {
@@ -21,9 +32,8 @@
   right: 1190px;
 }
 
-.buttonContainer > button{
-   color: white;
-   
+.buttonContainer > button {
+  color: white;
 }
 
 .buttonContainer {
@@ -33,10 +43,10 @@
   transform: translateX(-50%);
   display: flex;
   justify-content: space-evenly;
-  gap: 1rem; 
+  gap: 1rem;
 }
 
-.callEnd{
+.callEnd {
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
@@ -53,7 +63,7 @@
   z-index: 1000;
 }
 
-.lobbyContainer{
+.lobbyContainer {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -61,7 +71,7 @@
   align-items: center;
 }
 
-.lobbyName{
+.lobbyName {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -75,12 +85,16 @@
   font-size: 18px !important;
 }
 
-.lobbyVideo{
+.TextField :global(.MuiOutlinedInput-root) input {
+  padding: 12px !important;
+}
+
+.lobbyVideo {
   border-radius: 12px;
   border: 3px solid rgb(50, 100, 210);
 }
 
-.lobbyName h2{
+.lobbyName h2 {
   color: rgb(50, 100, 210);
 }
 
@@ -88,134 +102,263 @@
   cursor: pointer !important;
 }
 
+/* ---- Video Grid ---- */
 .conferenceContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 300px); /* ✅ each video fixed 300px */
-  gap: 1rem;                                       /* spacing between videos */
-  justify-content: center;                         /* center grid in container */
-  width: 100%;
-  background: black;
-  padding: 10px;
-  overflow-y: auto;                                /* ✅ scroll if too many rows */
+  padding: 18px;
+  gap: 1rem; /* space between videos */
+  justify-items: center;
+  background: #000;
 }
 
 .videoStream {
-  width: 300px;          /* ✅ fixed width */
-  aspect-ratio: 16/9;    /* ✅ keeps proportion */
-  object-fit: cover;     /* ✅ prevents stretching */
-  border-radius: 10px;
-  border: 1px solid blue;
-  background: black;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* keeps correct proportions */
+  object-fit: cover;
+  border-radius: 8px;
+  background: #000;
 }
 
-
-.chatRoom{
+/* ---- Chat Panel ---- */
+.chatRoom {
   position: absolute;
-  height: 100vh;
-  width: 30vw;
   right: 0;
-  background-color: white;
-  border-radius: 10px;
-  padding-block: 40px ;
-   overflow: hidden;
-}
-
-.chatContainer{
-  position: relative;
-  height: 100%;
-   width: 100%;
-}
-
-.messageForm{
-  position: fixed;
-  bottom: 0;
-  margin-bottom: 1rem;
-  width: 30%;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.messageForm > input{
-  width: 70%;
-  padding: 10px;
-  border-radius: 1rem;
-  outline: none;
-  border: 1px solid black;
-  font-size: 12px;
-}
-
-.messageForm > input::placeholder{
-  font-weight: 600;
-  font-style: italic; /* optional */
-  opacity: 1;
-}
-
-.sendButton {
-  padding: 5px !important;
-  border-radius: 0.5rem !important;
-}
-
-.chattingDisplay {
-  height: 80vh;           
-  overflow-y: auto;       
-  padding: 10px;
+  top: 0;
+  width: 30vw;
+  height: 100vh;
+  background-color: #fff;
+  border-radius: 10px 0 0 10px;
   display: flex;
   flex-direction: column;
-  gap: 8px;  
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Header */
+.chatHeader {
+  text-align: center;
+  color: black;
+  font-weight: 600;
+  margin: 0;
+  padding: 18px;
+}
+
+.chatDivider {
+  margin: 0.5rem 0 1rem 0;
+  border: 0;
+  height: 1px;
+  background-color: #ccc;
+}
+
+/* Center messages / placeholder */
+.chatContent {
+  flex: 1; /* fill the remaining vertical space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* center vertically if image */
+  overflow-y: auto;
+}
+
+/* Messages */
+.chattingDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
 }
 
 .chattingDisplay::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
-.userMessage{
-  margin: 10px;
+.userMessage {
+  background-color: #f1f1f1;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  word-break: break-word;
+}
+
+.sender {
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+.messageText {
+  margin: 0;
+}
+
+/* Placeholder image */
+.chattingImage {
+  width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+  opacity: 0.7;
+}
+
+/* Input form at bottom */
+.chatContainer {
+  width: 100%;
+}
+
+.messageForm {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.messageForm input {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+.messageForm input::placeholder {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.sendButton {
+  padding: 0.5rem 1rem !important;
+  border-radius: 0.5rem !important;
+  min-width: 50px;
+}
+
+.chatContent {
+  justify-content: flex-start; /* was center before */
+}
+
+
+
+/* ---- Messages ---- */
+.userMessage {
   background-color: rgb(208, 208, 208);
   padding: 10px;
-  border-radius:1rem;
-
+  border-radius: 1rem;
 }
 
-.userMessage > p{
-  margin-top: 5px;
+.buttonContainer {
+  position: fixed;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
-@media screen and (max-width:800px) {
-  .lobbyContainer{
+/* Default sizes */
+.buttonContainer .MuiSvgIcon-root {
+  font-size: 3rem; /* camera */
+}
+
+/* Smaller sizes for mic, screen share icons */
+.buttonContainer .micScreenIcon {
+  font-size: 2.5rem;
+}
+
+.buttonContainer .callEndIcon {
+  font-size: 1.7rem;
+}
+
+.buttonContainer .videoScreenIcon {
+  font-size: 2.5rem;
+}
+
+/* ---- Responsive: collapse chat on narrow screens ---- */
+@media (max-width: 900px) {
+  .chatRoom {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+    right: 0;
+    border-radius: 10px 10px 0 0;
+  }
+  .conferenceContainer {
+    width: 100vw; /* use full width when chat overlays */
+  }
+
+  .messageForm{
+    width: auto;
+  }
+
+  .messageForm button{
+    width: auto !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .lobbyContainer {
     flex-direction: column;
   }
 
-  .TextField :global(.MuiOutlinedInput-root){
+  .TextField :global(.MuiOutlinedInput-root) {
     width: 300px !important;
   }
 
-  .lobbyVideo{
+  .lobbyVideo {
     width: 360px;
+  }
+
+  .conferenceContainer{
+    display: flex;
+    flex-direction: column;
   }
 }
 
-@media screen and (max-width:600px) {
-
-  .TextField :global(.MuiOutlinedInput-root){
+@media screen and (max-width: 600px) {
+  .TextField :global(.MuiOutlinedInput-root) {
     width: 270px !important;
   }
 
-  .lobbyName{
+  .meetUserVideo {
+    bottom: 12vh;
+    width: 90px;
+  }
+
+  .buttonContainer .MuiSvgIcon-root {
+    font-size: 2rem; /* scale down all icons */
+  }
+
+  .buttonContainer .micScreenIcon {
+    font-size: 1.8rem;
+  }
+
+  .buttonContainer .callEndIcon {
+    font-size: 1.5rem;
+  }
+
+  .buttonContainer .videoScreenIcon {
+    font-size: 2rem;
+  }
+
+  .lobbyName {
     margin: 28px;
   }
 
-  .lobbyVideo{
+  .lobbyVideo {
     width: 280px;
+  }
+
+  .buttonContainer .MuiSvgIcon-root {
+    font-size: 1.5rem; /* base size */
+  }
+
+  /* Optional: fine-tune individual icons by extra class */
+  .buttonContainer .callEnd .MuiSvgIcon-root {
+    font-size: 1.2rem; /* smaller for the hang-up button */
   }
 }
 
-@media screen and (max-width:300px) {
-
-  .TextField :global(.MuiOutlinedInput-root){
+@media screen and (max-width: 300px) {
+  .TextField :global(.MuiOutlinedInput-root) {
     width: AUTO !important;
   }
 
-  .lobbyVideo{
-    width: 220PX;
+  .lobbyVideo {
+    width: 220px;
   }
 }
