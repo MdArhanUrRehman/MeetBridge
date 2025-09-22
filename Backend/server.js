@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import { createServer } from 'node:http';
+import { Server } from 'socket.io';
 import userRouter from "./routes/userRoute.js";
 import cors from 'cors'
 import 'dotenv/config';
@@ -31,6 +32,12 @@ app.get("/home", (req, res) => {
 });
 
 app.use("/api/v1/user", userRouter);
+
+// io.on("connection", (socket) => {
+
+//     console.log('a user connected');
+// })
+
 
 server.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`)
