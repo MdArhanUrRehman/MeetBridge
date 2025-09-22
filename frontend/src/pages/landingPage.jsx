@@ -19,18 +19,18 @@ export default function LandingPage() {
           </div>
 
           <div className="right-side">
-            <img
-              src={LandingPageImage}
-              alt="People connecting through a video call"
-            />
+            <div className="br">
+              <img
+                src={LandingPageImage}
+                alt="People connecting through a video call"
+              />
+            </div>
           </div>
         </section>
 
         <section className="aboutContainer">
           <div className="aboutHeader">
-            <h2>
-              ABOUT US
-            </h2>
+            <h2>ABOUT US</h2>
             <p>Connecting you with your loved ones anytime, anywhere.</p>
           </div>
 

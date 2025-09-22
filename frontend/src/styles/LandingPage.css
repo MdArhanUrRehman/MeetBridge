@@ -16,6 +16,13 @@
 .left-side h2 {
   font-size: 2rem;
 }
+
+.br{
+  border: 2px solid #868686;
+  padding: 18px;
+  border-radius: 18px;
+}
+
 .highlight {
   color: rgb(50, 100, 210);
 }
