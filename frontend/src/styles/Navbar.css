@@ -1,9 +1,18 @@
+.NavBar {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  backdrop-filter: blur(100px);
+  z-index: 1000; /* Ensure navbar sits above page content */
+}
+
 .NavBar nav {
-  color: white;
+  color: black;
   padding-inline: 1.2rem;
   padding-top: 1.6rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .navHeader {
@@ -17,10 +26,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
 }
 
-.NavBar nav .navlist div {
+.navlist a {
+  text-decoration: none;
+  color: black;
+}
+
+.loginBtn {
   background: rgb(50, 100, 210);
   padding-inline: 1rem;
   padding-block: 0.4rem;
@@ -28,15 +41,51 @@
   font-size: 1rem;
 }
 
+.loginBtn button {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
 .sideBar {
   display: none;
+  cursor: pointer;
 }
 
+.sideBar > i {
+  font-size: 1.5rem;
+}
+
+.menuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1001; /* Overlay above page but below menu drawer */
+}
+
+/* Mobile drawer */
 .barMenu {
-  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  min-height: 100vh;
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  z-index: 1002; /* Highest so it floats above footer/content */
 }
 
-.barMenu > a {
+.barMenu a,
+.barMenu button {
   text-decoration: none;
   font-weight: 600;
   background: rgb(50, 100, 210);
@@ -44,16 +93,19 @@
   padding-block: 0.5rem;
   color: white;
   border-radius: 18px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
 }
 
+/* Logo section */
 .appName {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  gap: 1px;
+  gap: 8px;
 }
-
 
 @media screen and (max-width: 600px) {
   .navlist {
@@ -66,34 +118,7 @@
     align-items: center;
   }
 
-  .sideBar > i {
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-
-  .barMenu {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    height: 70vh;
-    width: 100vw;
-
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    background-color: transparent;
-    backdrop-filter: blur(5px);
-    padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
-
   .navHeader {
-    font-size: 1.2rem;
-    font-weight: 600;
+    display: none;
   }
 }

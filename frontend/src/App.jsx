@@ -5,6 +5,7 @@ import Authentication from './pages/authentication'
 import VideoComponent from './pages/VideoMeet'
 import HomeComponent from './pages/HomeComponent'
 import History from './pages/History'
+import Navbar from './components/Navbar'
 
 
 function App() {

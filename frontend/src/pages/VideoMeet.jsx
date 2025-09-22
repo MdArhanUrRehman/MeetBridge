@@ -17,12 +17,12 @@ import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
 import ChattingImage from "../assets/Chatting.svg";
 
-const server_url = "https://videoconferencing-2.onrender.com";
+const server_url = import.meta.env.VITE_SERVER_URL;
 
 const connections = {};
 
 const peerConfigConnection = {
-  iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+  iceServers: [{ urls: import.meta.env.VITE_STUN_SERVER }],
 };
 
 export default function VideoComponent() {
@@ -63,7 +63,6 @@ export default function VideoComponent() {
   let [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    console.log("HELLO");
     getPermissions();
   });
 

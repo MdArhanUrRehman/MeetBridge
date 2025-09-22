@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const AppContext = createContext({});
 
-const server_url = "https://videoconferencing-2.onrender.com"
+const server_url = import.meta.env.VITE_SERVER_URL;
 
 export function AppProvider({children}){
 
@@ -13,7 +13,7 @@ export function AppProvider({children}){
     const navigate = useNavigate();
 
     const userSignUp = async (obj) => {
-        const {data} =  await axios.post("https://videoconferencing-2.onrender.com/api/v1/user/signup", obj);
+        const {data} =  await axios.post(server_url + "/api/v1/user/signup", obj);
 
         const { name, ...loginData } = obj; 
 
@@ -26,7 +26,7 @@ export function AppProvider({children}){
     }
 
     const userLogin = async (obj) => {
-       const { data } = await axios.post("https://videoconferencing-2.onrender.com/api/v1/user/login", obj);
+       const { data } = await axios.post(server_url + "/api/v1/user/login", obj);
        if(data.success === true){
         localStorage.setItem("token", data.message);
         navigate("/");
@@ -39,7 +39,7 @@ export function AppProvider({children}){
 
     const getHistory = async () => {
         try {
-            let request = await axios.get(server_url+"/api/v1/user/get_all_activity", {
+            let request = await axios.get(server_url + "/api/v1/user/get_all_activity", {
                 params : {
                     token : localStorage.getItem("token"),
                 }
@@ -53,7 +53,7 @@ export function AppProvider({children}){
 
     const addToUserHistory = async (meeting_code) => {
         try {
-            let request = await axios.post(server_url+"/api/v1/user/add_to_activity", {
+            let request = await axios.post(server_url + "/api/v1/user/add_to_activity", {
                 token : localStorage.getItem("token"),
                 meeting_code : meeting_code, 
             })

@@ -5,7 +5,6 @@
 }
 
 .mainContainer{
-  background-color: #000;  /* only this page is black */
   min-height: 100vh;       /* full viewport height */
 
   width: 100%;
@@ -341,6 +340,10 @@
 
   .lobbyVideo {
     width: 280px;
+  }
+
+  .lobbyContainer{
+    justify-content: center;
   }
 
   .buttonContainer .MuiSvgIcon-root {
