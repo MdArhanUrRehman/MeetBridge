@@ -113,6 +113,7 @@
   width: 100%;
   aspect-ratio: 16 / 9; 
   object-fit: cover;
+  border: 2px solid rgb(50, 100, 210);
   border-radius: 8px;
   background: #000;
 }

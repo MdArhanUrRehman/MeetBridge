@@ -189,7 +189,14 @@ export default function VideoComponent() {
           localVideoref.current.srcObject = window.localStream;
 
           for (let id in connections) {
-            connections[id].addStream(window.localStream);
+            blackSilence.getTracks().forEach((track) => {
+              const sender = connections[id]
+                .getSenders()
+                .find((s) => s.track.kind === track.kind);
+              sender
+                ? sender.replaceTrack(track)
+                : connections[id].addTrack(track, blackSilence);
+            });
 
             connections[id].createOffer().then((description) => {
               connections[id]
@@ -224,7 +231,6 @@ export default function VideoComponent() {
   };
 
   let getDislayMediaSuccess = (stream) => {
-    console.log("HERE");
     try {
       window.localStream.getTracks().forEach((track) => track.stop());
     } catch (e) {
@@ -592,7 +598,10 @@ export default function VideoComponent() {
               <></>
             )}
 
-            <div className={styles.buttonContainer} style={showModal ? {display:"none"} : {display : "flex"}}>
+            <div
+              className={styles.buttonContainer}
+              style={showModal ? { display: "none" } : { display: "flex" }}
+            >
               <IconButton onClick={handleVideo}>
                 {video ? (
                   <VideoCameraFrontIcon className={styles.videoScreenIcon} />
@@ -655,7 +664,7 @@ export default function VideoComponent() {
             ></video>
             <div
               className={styles.conferenceContainer}
-              style={{ gridTemplateColumns: "repeat(3, 1fr)" }} 
+              style={{ gridTemplateColumns: "repeat(3, 1fr)" }}
             >
               {videos.map((video) => (
                 <video
