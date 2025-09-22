@@ -104,6 +104,10 @@ h2 {
     margin-left: 0;
   }
 
+  .leftPanel {
+  width: 100%;
+}
+
   .rightPanel img {
     width: 230px;   /* ✅ no crazy 5500px width */
   }
