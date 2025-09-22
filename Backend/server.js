@@ -32,5 +32,6 @@ app.get("/home", (req, res) => {
 
 app.use("/api/v1/user", userRouter);
 
-
-export default app;  
+server.listen(PORT, () => {
+    console.log(`Server is running on PORT ${PORT}`)
+})
