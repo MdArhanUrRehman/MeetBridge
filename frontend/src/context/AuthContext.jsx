@@ -76,6 +76,7 @@ export function AppProvider({ children }) {
     userSignUp,
     token,
     userLogin,
+    setToken
   };
 
   useEffect(() => {

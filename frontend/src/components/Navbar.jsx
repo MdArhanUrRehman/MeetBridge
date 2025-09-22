@@ -9,11 +9,12 @@ import wrongImage from "../assets/wrong.png"
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { token } = useContext(AppContext);
+  const { token, setToken } = useContext(AppContext);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    setToken(false);
     setMenuOpen(false);
     toast.success("Successfully Logged out!");
     navigate("/");
@@ -21,8 +22,8 @@ export default function Navbar() {
 
   useEffect(() => {
     if (!token) {
-      navigate("/");
-    }
+    navigate("/");
+  }
   }, [token]);
 
   return (
