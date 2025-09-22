@@ -1,8 +1,6 @@
 import React, { useContext, useState } from "react";
 import withAuth from "../util/auth";
 import { useNavigate } from "react-router-dom";
-import IconButton from "@mui/material/IconButton";
-import RestoreIcon from "@mui/icons-material/Restore";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import AppContext from "../context/AuthContext";
@@ -10,6 +8,8 @@ import Navbar from "../components/Navbar";
 import "../styles/HomeComponent.css";
 import LinkImage from "../assets/Link.svg";
 import { v4 as uuidv4 } from "uuid";
+import copyImage from "../assets/copy.png";
+import copiedImage from "../assets/copied.png"
 
 function HomeComponent() {
   const navigate = useNavigate();
@@ -82,9 +82,9 @@ function HomeComponent() {
                 </Button>
                 <div className="copy" onClick={handleClipboard}>
                   {copy ? (
-                    <i className="fa-regular fa-copy"></i>
+                    <img src={copyImage} alt="" />
                   ) : copied ? (
-                    <i className="fa-solid fa-copy"></i>
+                    <img src={copiedImage} alt="" />
                   ) : null}
                 </div>
               </div>

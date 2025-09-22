@@ -86,7 +86,10 @@ h2 {
   color: black;
 }
 
-/* ------- Responsive Fixes ------- */
+.copy i{
+  font-size: 18px;
+}
+
 @media screen and (max-width: 600px) {
   .meetContainer {
     flex-direction: column;
@@ -109,7 +112,7 @@ h2 {
 }
 
   .rightPanel img {
-    width: 230px;   /* ✅ no crazy 5500px width */
+    width: 230px;   
   }
 
   .meeting {

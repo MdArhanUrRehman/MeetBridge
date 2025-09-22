@@ -34,7 +34,7 @@ export default function History() {
           </div>
 
           <div className="HistoryBox">
-            {meetings.map((e, i) => (
+            {meetings.length > 0 && meetings.map((e, i) => (
               <motion.div
                 key={e._id}
                 initial={{ opacity: 0, y: 20 }}

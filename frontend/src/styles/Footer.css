@@ -8,23 +8,23 @@
 .footerContainer {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;               /* similar to gap-10 */
-  padding: 1.75rem;          /* p-7 ≈ 1.75rem */
-  font-size: 0.875rem;       /* text-sm */
+  gap: 2.5rem;               
+  padding: 1.75rem;          
+  font-size: 0.875rem;      
 }
 
 .footerIntro .footerLogo {
-  width: 100px;              /* adjust to match your logo size */
+  width: 100px;              
   margin-bottom: 1rem;
 }
 
 .footerIntro .footerText {
-  line-height: 1.5rem;       /* leading-6 */
-  max-width: 66%;           /* md:w-2/3 equivalent on larger screens */
+  line-height: 1.5rem;       
+  max-width: 66%;           
 }
 
 .footerHeading {
-  font-size: 1.25rem;        /* text-xl */
+  font-size: 1.25rem;        
   font-weight: 500;
   margin-bottom: 1.25rem;
 }
@@ -59,13 +59,12 @@
   margin-bottom: 0.75rem;
 }
 
-/* Responsive row layout for medium+ screens */
 @media screen and (min-width: 768px) {
   .footerContainer {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 1.75rem 3rem;   /* md:px-16 equivalent */
+    padding: 1.75rem 3rem; 
   }
 
   .footerIntro .footerText {

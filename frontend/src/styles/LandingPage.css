@@ -1,7 +1,7 @@
 .landingPageContainer {
   display: flex;
   flex-direction: column;
-  margin-top: 80px; /* leaves space for fixed navbar */
+  margin-top: 80px; 
 }
 
 .landingContainer {

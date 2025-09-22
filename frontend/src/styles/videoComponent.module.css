@@ -101,7 +101,6 @@
   cursor: pointer !important;
 }
 
-/* ---- Video Grid ---- */
 .conferenceContainer {
   display: grid;
   padding: 18px;
@@ -112,7 +111,7 @@
 
 .videoStream {
   width: 100%;
-  aspect-ratio: 16 / 9; /* keeps correct proportions */
+  aspect-ratio: 16 / 9; 
   object-fit: cover;
   border-radius: 8px;
   background: #000;
@@ -134,7 +133,6 @@
   box-sizing: border-box;
 }
 
-/* Header */
 .chatHeader {
   text-align: center;
   color: black;
@@ -150,16 +148,14 @@
   background-color: #ccc;
 }
 
-/* Center messages / placeholder */
 .chatContent {
-  flex: 1; /* fill the remaining vertical space */
+  flex: 1; 
   display: flex;
   flex-direction: column;
-  justify-content: center; /* center vertically if image */
+  justify-content: center;
   overflow-y: auto;
 }
 
-/* Messages */
 .chattingDisplay {
   display: flex;
   flex-direction: column;
@@ -187,7 +183,6 @@
   margin: 0;
 }
 
-/* Placeholder image */
 .chattingImage {
   width: 100%;
   max-height: 100%;
@@ -197,7 +192,6 @@
   opacity: 0.7;
 }
 
-/* Input form at bottom */
 .chatContainer {
   width: 100%;
 }
@@ -228,12 +222,10 @@
 }
 
 .chatContent {
-  justify-content: flex-start; /* was center before */
+  justify-content: flex-start; 
 }
 
 
-
-/* ---- Messages ---- */
 .userMessage {
   background-color: rgb(208, 208, 208);
   padding: 10px;
@@ -248,12 +240,10 @@
   align-items: center;
 }
 
-/* Default sizes */
 .buttonContainer .MuiSvgIcon-root {
-  font-size: 3rem; /* camera */
+  font-size: 3rem;
 }
 
-/* Smaller sizes for mic, screen share icons */
 .buttonContainer .micScreenIcon {
   font-size: 2.5rem;
 }
@@ -266,7 +256,6 @@
   font-size: 2.5rem;
 }
 
-/* ---- Responsive: collapse chat on narrow screens ---- */
 @media (max-width: 900px) {
   .chatRoom {
     position: fixed;
@@ -277,7 +266,7 @@
     border-radius: 10px 10px 0 0;
   }
   .conferenceContainer {
-    width: 100vw; /* use full width when chat overlays */
+    width: 100vw; 
   }
 
   .messageForm{
@@ -319,7 +308,7 @@
   }
 
   .buttonContainer .MuiSvgIcon-root {
-    font-size: 2rem; /* scale down all icons */
+    font-size: 2rem; 
   }
 
   .buttonContainer .micScreenIcon {
@@ -347,12 +336,12 @@
   }
 
   .buttonContainer .MuiSvgIcon-root {
-    font-size: 1.5rem; /* base size */
+    font-size: 1.5rem; 
   }
 
-  /* Optional: fine-tune individual icons by extra class */
+  
   .buttonContainer .callEnd .MuiSvgIcon-root {
-    font-size: 1.2rem; /* smaller for the hang-up button */
+    font-size: 1.2rem; 
   }
 }
 
