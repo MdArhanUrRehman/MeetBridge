@@ -430,6 +430,7 @@ export default function VideoComponent() {
     ctx.resume();
     return Object.assign(dst.stream.getAudioTracks()[0], { enabled: false });
   };
+
   let black = ({ width = 640, height = 480 } = {}) => {
     let canvas = Object.assign(document.createElement("canvas"), {
       width,
@@ -647,6 +648,7 @@ export default function VideoComponent() {
             <video
               ref={localVideoref}
               autoPlay
+              muted
               className={`${styles.meetUserVideo} ${
                 showModal ? styles.goLeft : styles.goRight
               }`}
