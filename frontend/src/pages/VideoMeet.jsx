@@ -511,7 +511,9 @@ export default function VideoComponent() {
 
   let connect = () => {
     if (username === ""){
-       toast("Enter name to join meet");
+       toast("Enter name to join meet", {
+        icon:"👇"
+       });
        return;
     } 
     setAskForUsername(false);
