@@ -39,7 +39,8 @@ function HomeComponent() {
 
   const handleClipboard = () => {
     navigator.clipboard
-      .writeText(`${window.location.origin}/${meetingCode}`)
+      .writeText(`${window.location.origin}\n
+        ${meetingCode}`)
       .then(() => {
         setCopy(false);
         setCopied(true);
