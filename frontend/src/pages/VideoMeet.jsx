@@ -16,6 +16,7 @@ import styles from "../styles/videoComponent.module.css";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
 import ChattingImage from "../assets/Chatting.svg";
+import toast from "react-hot-toast";
 
 const server_url = import.meta.env.VITE_SERVER_URL;
 
@@ -509,7 +510,10 @@ export default function VideoComponent() {
   };
 
   let connect = () => {
-    if (username === "") return;
+    if (username === ""){
+       toast("Enter name to join meet");
+       return;
+    } 
     setAskForUsername(false);
     getMedia();
   };
