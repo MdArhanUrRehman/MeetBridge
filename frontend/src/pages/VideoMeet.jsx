@@ -606,7 +606,7 @@ export default function VideoComponent() {
                 {video ? (
                   <VideoCameraFrontIcon className={styles.videoScreenIcon} />
                 ) : (
-                  <VideoCameraFrontIcon className={styles.videoScreenIcon} />
+                  <VideocamOffIcon className={styles.videoScreenIcon} />
                 )}
               </IconButton>
 
