@@ -115,6 +115,14 @@
   gap: 8px;
 }
 
+.navHeader2{
+  display: none;
+}
+
+.Meetlogo{
+  width: 77px;
+}
+
 @media screen and (max-width: 600px) {
   .navlist {
     display: none;
@@ -135,7 +143,17 @@
     width: 35px;
   }
 
+  .Meetlogo{
+    width: 55px;
+  }
+
   .navHeader {
     display: none;
+  }
+  
+  .navHeader2{
+    display: flex;
+    font-weight: 600;
+    font-size: 1.5rem;
   }
 }

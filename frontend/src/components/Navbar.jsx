@@ -31,7 +31,8 @@ export default function Navbar() {
       <nav>
         {/* Brand / Logo */}
         <div className="appName" onClick={() => navigate("/")}>
-          <img src={logo} alt="Meet Bridge logo" style={{ width: "70px" }} />
+          <img src={logo} alt="Meet Bridge logo" className="Meetlogo"/>
+          <div className="navHeader2">MB</div>
           <div className="navHeader">Meet Bridge</div>
         </div>
 
