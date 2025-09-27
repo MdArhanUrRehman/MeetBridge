@@ -65,21 +65,21 @@ export default function VideoComponent() {
 
   useEffect(() => {
     getPermissions();
-  });
+  }, []);
 
-  let getDislayMedia = () => {
-    if (screen) {
-      if (navigator.mediaDevices.getDisplayMedia) {
-        navigator.mediaDevices
-          .getDisplayMedia({ video: true, audio: true })
-          .then(getDislayMediaSuccess)
-          .then((stream) => {})
-          .catch((e) => {
-            setScreen(false);
-          });
-      }
-    }
-  };
+  // let getDislayMedia = () => {
+  //   if (screen) {
+  //     if (navigator.mediaDevices.getDisplayMedia) {
+  //       navigator.mediaDevices
+  //         .getDisplayMedia({ video: true, audio: true })
+  //         .then(getDislayMediaSuccess)
+  //         .then((stream) => {})
+  //         .catch((e) => {
+  //           setScreen(false);
+  //         });
+  //     }
+  //   }
+  // };
 
   const getPermissions = async () => {
     try {
@@ -141,146 +141,101 @@ export default function VideoComponent() {
     connectToSocketServer();
   };
 
-  let getUserMediaSuccess = (stream) => {
-    try {
-      window.localStream.getTracks().forEach((track) => track.stop());
-    } catch (e) {
-      console.log(e);
-    }
-
-    window.localStream = stream;
-    localVideoref.current.srcObject = stream;
-
-    for (let id in connections) {
-      if (id === socketIdRef.current) continue;
-
-      connections[id].addStream(window.localStream);
-
-      connections[id].createOffer().then((description) => {
-        console.log(description);
-        connections[id]
-          .setLocalDescription(description)
-          .then(() => {
-            socketRef.current.emit(
-              "signal",
-              id,
-              JSON.stringify({ sdp: connections[id].localDescription })
-            );
-          })
-          .catch((e) => console.log(e));
-      });
-    }
-
-    stream.getTracks().forEach(
-      (track) =>
-        (track.onended = () => {
-          setVideo(false);
-          setAudio(false);
-
-          try {
-            let tracks = localVideoref.current.srcObject.getTracks();
-            tracks.forEach((track) => track.stop());
-          } catch (e) {
-            console.log(e);
-          }
-
-          let blackSilence = (...args) =>
-            new MediaStream([black(...args), silence()]);
-          window.localStream = blackSilence();
-          localVideoref.current.srcObject = window.localStream;
-
-          for (let id in connections) {
-            blackSilence.getTracks().forEach((track) => {
-              const sender = connections[id]
-                .getSenders()
-                .find((s) => s.track.kind === track.kind);
-              sender
-                ? sender.replaceTrack(track)
-                : connections[id].addTrack(track, blackSilence);
-            });
-
-            connections[id].createOffer().then((description) => {
-              connections[id]
-                .setLocalDescription(description)
-                .then(() => {
-                  socketRef.current.emit(
-                    "signal",
-                    id,
-                    JSON.stringify({ sdp: connections[id].localDescription })
-                  );
-                })
-                .catch((e) => console.log(e));
-            });
-          }
-        })
-    );
-  };
-
-  let getUserMedia = () => {
+  // Get or update user media without stopping tracks
+const getUserMedia = async () => {
+  try {
     if ((video && videoAvailable) || (audio && audioAvailable)) {
-      navigator.mediaDevices
-        .getUserMedia({ video: video, audio: audio })
-        .then(getUserMediaSuccess)
-        .then((stream) => {})
-        .catch((e) => console.log(e));
-    } else {
-      try {
-        let tracks = localVideoref.current.srcObject.getTracks();
-        tracks.forEach((track) => track.stop());
-      } catch (e) {}
+      if (window.localStream) {
+        // Enable/disable existing tracks
+        window.localStream.getVideoTracks().forEach((t) => (t.enabled = video && videoAvailable));
+        window.localStream.getAudioTracks().forEach((t) => (t.enabled = audio && audioAvailable));
+        localVideoref.current.srcObject = window.localStream;
+      } else {
+        // Request new stream only if it doesn't exist
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: video ? videoAvailable : false,
+          audio: audio ? audioAvailable : false,
+        });
+        window.localStream = stream;
+        localVideoref.current.srcObject = stream;
+        getUserMediaSuccess(stream);
+      }
     }
-  };
+  } catch (e) {
+    console.log(e);
+  }
+};
 
-  let getDislayMediaSuccess = (stream) => {
-    try {
-      window.localStream.getTracks().forEach((track) => track.stop());
-    } catch (e) {
-      console.log(e);
-    }
+// Handle success of user media without stopping tracks
+const getUserMediaSuccess = (stream) => {
+  window.localStream = stream;
+  localVideoref.current.srcObject = stream;
 
-    window.localStream = stream;
-    localVideoref.current.srcObject = stream;
+  for (let id in connections) {
+    if (id === socketIdRef.current) continue;
 
-    for (let id in connections) {
-      if (id === socketIdRef.current) continue;
+    connections[id].addStream(stream);
 
-      connections[id].addStream(window.localStream);
-
-      connections[id].createOffer().then((description) => {
-        connections[id]
-          .setLocalDescription(description)
-          .then(() => {
-            socketRef.current.emit(
-              "signal",
-              id,
-              JSON.stringify({ sdp: connections[id].localDescription })
-            );
-          })
-          .catch((e) => console.log(e));
-      });
-    }
-
-    stream.getTracks().forEach(
-      (track) =>
-        (track.onended = () => {
-          setScreen(false);
-
-          try {
-            let tracks = localVideoref.current.srcObject.getTracks();
-            tracks.forEach((track) => track.stop());
-          } catch (e) {
-            console.log(e);
-          }
-
-          let blackSilence = (...args) =>
-            new MediaStream([black(...args), silence()]);
-          window.localStream = blackSilence();
-          localVideoref.current.srcObject = window.localStream;
-
-          getUserMedia();
+    connections[id].createOffer().then((description) => {
+      connections[id]
+        .setLocalDescription(description)
+        .then(() => {
+          socketRef.current.emit("signal", id, JSON.stringify({ sdp: connections[id].localDescription }));
         })
-    );
-  };
+        .catch((e) => console.log(e));
+    });
+  }
+
+  stream.getTracks().forEach((track) => {
+    track.onended = () => {
+      if (track.kind === "video") setVideo(false);
+      if (track.kind === "audio") setAudio(false);
+    };
+  });
+};
+
+// Get or update display media (screen share) without stopping user media tracks
+const getDislayMedia = async () => {
+  try {
+    if (screen && navigator.mediaDevices.getDisplayMedia) {
+      const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+      getDislayMediaSuccess(stream);
+    }
+  } catch (e) {
+    console.log(e);
+    setScreen(false);
+  }
+};
+
+// Handle success of display media
+const getDislayMediaSuccess = (stream) => {
+  window.localStream = stream;
+  localVideoref.current.srcObject = stream;
+
+  for (let id in connections) {
+    if (id === socketIdRef.current) continue;
+
+    connections[id].addStream(stream);
+
+    connections[id].createOffer().then((description) => {
+      connections[id]
+        .setLocalDescription(description)
+        .then(() => {
+          socketRef.current.emit("signal", id, JSON.stringify({ sdp: connections[id].localDescription }));
+        })
+        .catch((e) => console.log(e));
+    });
+  }
+
+  stream.getTracks().forEach((track) => {
+    track.onended = () => {
+      setScreen(false);
+      // When screen share ends, revert to webcam/mic
+      getUserMedia();
+    };
+  });
+};
+
 
   let gotMessageFromServer = (fromId, message) => {
     var signal = JSON.parse(message);
